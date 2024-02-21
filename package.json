@@ -1,0 +1,29 @@
+{
+  "name": "e-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@sanity/client": "^3.4.1",
+    "@sanity/image-url": "^1.0.1",
+    "all": "^0.0.0",
+    "google-map-react": "^2.2.1",
+    "jotai": "^1.8.6",
+    "next": "12.2.5",
+    "next-sanity": "^0.8.4",
+    "next-videos": "^1.5.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-player": "^2.11.0"
+  },
+  "devDependencies": {
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.2.5"
+  }
+}
