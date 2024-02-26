@@ -31,7 +31,7 @@ a {
 
 .navbar {
   width: 100%;
-  height: 10vh;
+  height: 10%;
   background-color: transparent;
   color: white;
   display: flex;
@@ -47,7 +47,6 @@ a {
   background-color: rgb(255, 255, 255);
   transition: 0.5s ease-in;
   color: #401f5f;
-box-shadow: 0 0 900px rgb(212, 133, 212);
 }
 
 .navbar ul {
@@ -78,6 +77,8 @@ box-shadow: 0 0 900px rgb(212, 133, 212);
   font-size: 19px;
   padding: 5px 0;
   font-weight: 500;
+  
+
 }
 
 .hero-section {
@@ -277,7 +278,7 @@ box-shadow: 0 0 900px rgb(212, 133, 212);
   position: fixed;
   align-items: center;
   z-index: 10;
-  background-color: #714598;
+  background-color: #9b6dc4;
   border-radius: 50px;
   margin-bottom: 10px;
 }
@@ -571,4 +572,56 @@ box-shadow: 0 0 900px rgb(212, 133, 212);
   text-align: center;
   margin-left: 10px;
   
+}
+
+
+/*****Cart page styling******/
+
+.cart-page{
+  height: 100vh;
+  width:90%;
+  padding: 20px 0;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-products{
+  width:50%;
+  border-radius: 10px;
+  padding:10px;
+  height:60%;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  
+}
+.cart-item{
+  display: flex;
+  align-items: center;
+  background-color: #9b6dc4;
+  border-radius: 12px;
+  justify-content: space-between;
+  padding:0 20px;
+  margin:20px 0;
+}
+.cart-item p{
+font-size: 23px;
+color: white;
+font-weight: 700;
+padding-left: 10px;
+}
+.cart-item img{
+  width: 33%;
+  height: 180px;
+  border-radius: 12px;
+  background-color: transparent;
+}
+.cart-page .info-text{
+  color:#361852;
+  margin-top:5%;
+
 }

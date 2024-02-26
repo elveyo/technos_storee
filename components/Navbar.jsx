@@ -5,10 +5,12 @@ import Link from "next/link";
 import jotai from "jotai";
 import { listElements } from "../lib/jotaiStore";
 import { useAtom } from "jotai";
+
+
 const Navbar = () => {
   const [navActive, isNavActive] = useState(false);
   const [homePage, isHomePage] = useState(false);
-  const [list] = useAtom(listElements);
+  const [list, setList] = useAtom(listElements);
 
   const changeNavState = (e) => {
     if (window.scrollY > 200) {
@@ -26,6 +28,16 @@ const Navbar = () => {
     window.addEventListener("scroll", changeNavState);
     return () => removeEventListener("scroll", changeNavState);
   });
+
+  useEffect(()=>{
+    let arr = [];
+    for(let i = 1; i< localStorage.length;i++){
+      let product = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      arr.push(product);
+    }
+    setList(arr);
+
+  },[])
   return (
     <div className={navActive || homePage ? "navbar active" : "navbar"}>
       <div className="logo">Technos</div>
@@ -40,7 +52,7 @@ const Navbar = () => {
         ) : (
           ""
         )}
-        <FaClipboardList className="cart" />
+        <Link href="/cart"><FaClipboardList className="cart" onClick={()=>{}} /></Link>
       </div>
     </div>
   );
