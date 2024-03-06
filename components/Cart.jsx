@@ -1,12 +1,12 @@
 import React from 'react'
 import { urlFor } from '../lib/sanityClient'
 import { IoIosRemoveCircle } from "react-icons/io";
-import { listElements } from '../lib/jotaiStore';
+import { cartElements } from '../lib/jotaiStore';
 import { useAtom } from 'jotai';
 import {motion, AnimatePresence} from 'framer-motion';
 const Cart = ({product}) => {
-  const [list,setList] = useAtom(listElements
-    )
+  const [list,setList] = useAtom(cartElements)
+  
   const removeItem = ()=>{
     localStorage.removeItem(product.name);
     setList(list.filter(prod=>prod._id != product._id))
@@ -21,7 +21,7 @@ const Cart = ({product}) => {
           className='cart-item'>
         <img src={urlFor(product.images[0])}></img>
         <p>{product.name}</p>
-        <p>{product.prize}$</p>
+        <p>{product.price}$</p>
         <IoIosRemoveCircle color="white" fontSize="50px" fontWeight="700" onClick={removeItem}/>
 
     </motion.div>

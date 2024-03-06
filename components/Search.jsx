@@ -1,23 +1,28 @@
-import React, { useRef } from "react";
+import React, { useRef , useState} from "react";
 import { useRouter } from "next/router";
 
 import { MdScreenSearchDesktop } from "react-icons/md";
 import { useAtom } from "jotai";
-import { searchAtom } from "../lib/jotaiStore";
+import { fetchedProducts,filteredProducts } from "../lib/jotaiStore";
 const Search = () => {
   const router = useRouter();
-  const searchRef = useRef();
-  const [search, setSearch] = useAtom(searchAtom);
-
+  const [search, setSearch] = useState("");
+  const [products] = useAtom(fetchedProducts);
+  const[jotaiProducts, setJotaiProducts] = useAtom(filteredProducts)
+const inputRef = useRef(null);
   return (
     <div>
       <div className="search-holder">
         <div className="search">
-          <input ref={searchRef} placeholder="Search" />
+          <input ref={inputRef} placeholder="Search" />
           <MdScreenSearchDesktop
             className="search-icon"
             onClick={() => {
-              setSearch(searchRef.current.value);
+              setSearch(inputRef.current.value);
+              if (search.trim().length != 0) {
+                const newProducts = products.filter(prod=>prod.name.includes(search));
+                setJotaiProducts(newProducts)
+              }
               router.push("/products");
             }}
           />

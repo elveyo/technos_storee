@@ -1,31 +1,26 @@
 import React, { useEffect } from "react";
 import Product from "./Product";
-import { searchAtom, fetchedProducts } from "../lib/jotaiStore";
+import { searchAtom, fetchedProducts, filteredProducts, AtomCategory } from "../lib/jotaiStore";
 import { useAtom } from "jotai";
 import { client, urlFor } from "../lib/sanityClient";
 
 const Products = ({ products }) => {
-  const [search, setSearch] = useAtom(searchAtom);
-  const [jotaiProducts, setJotaiProducts] = useAtom(fetchedProducts);
-  useEffect(() => {
-    if (search !== "") {
-      client
-        .fetch(`*[_type == "product" && name match "${search}"]`)
-        .then((data) => {
-          setJotaiProducts(data);
-          setSearch("");
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [search]);
+  const [jotaiProducts, setJotaiProducts] = useAtom(filteredProducts);
+  const [category] = useAtom(AtomCategory)
+  useEffect(()=>{
+    if(category == "All")setJotaiProducts(products)
+  },[]);
+  
   return (
     <div className="products-container">
       <div className="products">
-        {(jotaiProducts.length > 0 ? jotaiProducts : products).map(
+        {jotaiProducts.length > 0 && jotaiProducts.map(
           (product) => (
-            <Product product={product} />
+            <Product key={product._id} product={product} />
           )
         )}
+        {!jotaiProducts.length && <h1 className="no-result">No results!</h1>}
+
       </div>
     </div>
   );

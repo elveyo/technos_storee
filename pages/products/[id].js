@@ -12,8 +12,8 @@ export const Product = ({ product }) => {
 
   return (
     <>
+          <Search />
       <SelectBar />
-      <Search />
       <div className="product-page">
         <div className="product-images">
           <div className="main-image">

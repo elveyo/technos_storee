@@ -3,10 +3,10 @@ import { FaClipboardList } from "react-icons/fa";
 import { urlFor } from "../lib/sanityClient";
 import Link from "next/link";
 import joti, { useAtom } from "jotai";
-import { listElements } from "../lib/jotaiStore";
+import { cartElements } from "../lib/jotaiStore";
 
 const Product = ({ product }) => {
-  const[list, setList] = useAtom(listElements);
+  const[list, setList] = useAtom(cartElements);
 
   let addToCart = (e) => {
     e.stopPropagation()
@@ -19,7 +19,7 @@ const Product = ({ product }) => {
     localStorage.setItem(`${product.name}`, JSON.stringify(product))
     }
 
-  const { _id, images, prize, name } = product;
+  const { _id, images, price, name } = product;
   return (
     <>
       <Link href={"/products/" + _id}>
@@ -27,7 +27,7 @@ const Product = ({ product }) => {
           <img src={urlFor(images[0])}></img>
           <h3>{name}</h3>
           <div className="prize-cart" >
-            <p>{prize}.00$</p>
+            <p>{price}.00$</p>
             <div onClick={addToCart}>
               <FaClipboardList/>
             </div>

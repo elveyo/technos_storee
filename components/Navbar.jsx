@@ -3,14 +3,14 @@ import { BiCart } from "react-icons/bi";
 import { FaClipboardList } from "react-icons/fa";
 import Link from "next/link";
 import jotai from "jotai";
-import { listElements } from "../lib/jotaiStore";
+import { cartElements } from "../lib/jotaiStore";
 import { useAtom } from "jotai";
 
 
 const Navbar = () => {
   const [navActive, isNavActive] = useState(false);
   const [homePage, isHomePage] = useState(false);
-  const [list, setList] = useAtom(listElements);
+  const [list, setList] = useAtom(cartElements);
 
   const changeNavState = (e) => {
     if (window.scrollY > 200) {
@@ -31,7 +31,7 @@ const Navbar = () => {
 
   useEffect(()=>{
     let arr = [];
-    for(let i = 1; i< localStorage.length;i++){
+    for(let i = 0; i< localStorage.length;i++){
       let product = JSON.parse(localStorage.getItem(localStorage.key(i)));
       arr.push(product);
     }
